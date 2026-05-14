@@ -102,6 +102,42 @@ function updateStatus(text, className) {
     statusBadge.className = `status ${className}`;
 }
 
+let deferredPrompt;
+const installBtn = document.getElementById('installBtn');
+
+// 1. Dengerin sinyal dari browser kalau web ini "Bisa Di-install"
+window.addEventListener('beforeinstallprompt', (e) => {
+    // Cegah browser memunculkan pop-up otomatis bawaan
+    e.preventDefault();
+    // Simpan event-nya ke variabel
+    deferredPrompt = e;
+    // Munculkan tombol install buatan kita
+    installBtn.style.display = 'block';
+});
+
+// 2. Logika ketika tombol buatan kita diklik
+installBtn.addEventListener('click', async () => {
+    if (deferredPrompt) {
+        // Munculkan pop-up instalasi asli browser
+        deferredPrompt.prompt();
+        
+        // Tunggu jawaban user (Install atau Cancel)
+        const { outcome } = await deferredPrompt.userChoice;
+        console.log(`User response to the install prompt: ${outcome}`);
+        
+        // Bersihkan variabel, karena prompt hanya bisa dipakai sekali
+        deferredPrompt = null;
+        // Sembunyikan kembali tombolnya
+        installBtn.style.display = 'none';
+    }
+});
+
+// 3. Sembunyikan tombol jika aplikasi sudah ter-install
+window.addEventListener('appinstalled', () => {
+    console.log('Aplikasi berhasil di-install!');
+    installBtn.style.display = 'none';
+});
+
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('service-worker.js')
     .then(() => console.log('Service Worker terdaftar!'))
