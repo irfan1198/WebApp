@@ -1,10 +1,10 @@
 const CACHE_NAME = 'sar-app-v1';
 const assetsToCache = [
-  '/',
-  '/index.html',
-  '/app.js',
-  '/icon.png',
-  '/manifest.json'
+  './',              
+  './index.html',     
+  './app.js',        
+  './manifest.json',
+  './icon.png'
 ];
 
 // Menyimpan file ke memori HP saat pertama kali dibuka

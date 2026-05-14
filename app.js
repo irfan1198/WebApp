@@ -1,3 +1,10 @@
+if ('serviceWorker' in navigator) {
+  // Gunakan 'service-worker.js' atau './service-worker.js'
+  navigator.serviceWorker.register('service-worker.js')
+    .then(() => console.log('Service Worker terdaftar!'))
+    .catch(err => console.log('Service Worker gagal:', err));
+}
+
 // UUID disesuaikan dengan program C++ ESP32 (menggunakan format hex standar BLE)
 const SERVICE_UUID = 0x180A; 
 const CHAR_NAME_UUID = 0x2A29;
