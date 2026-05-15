@@ -7,7 +7,6 @@ const assetsToCache = [
   './icon.png'
 ];
 
-// Menyimpan file ke memori HP saat pertama kali dibuka
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
@@ -16,7 +15,6 @@ self.addEventListener('install', event => {
   );
 });
 
-// Mengambil file dari memori HP saat offline
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request).then(response => {
