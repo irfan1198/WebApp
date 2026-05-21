@@ -6,11 +6,11 @@ if ('serviceWorker' in navigator) {
 }
 
 // UUID disesuaikan dengan program C++ ESP32 (menggunakan format hex standar BLE)
-const SERVICE_UUID = 0x180A; 
-const CHAR_NAME_UUID = 0x2A29;
-const CHAR_ID_UUID = 0x2A25;
-const CHAR_LAT_UUID = 0x2A27; // Tambahan untuk Latitude
-const CHAR_LNG_UUID = 0x2A28;
+const SERVICE_UUID   = "12345678-1234-1234-1234-1234567890ab"; 
+const CHAR_NAME_UUID = "12345678-1234-1234-1234-1234567890ac";
+const CHAR_ID_UUID   = "12345678-1234-1234-1234-1234567890ad";
+const CHAR_LAT_UUID  = "12345678-1234-1234-1234-1234567890ae"; 
+const CHAR_LNG_UUID  = "12345678-1234-1234-1234-1234567890af";
 
 let bluetoothDevice = null;
 let nameCharacteristic = null;
